@@ -4,6 +4,12 @@ Scale-to-zero FastAPI routing facade for the PF API Gateway. This service owns o
 routing and transport concerns; business logic remains in `pf-svc-reference` and
 `pf-svc-income`.
 
+## Gateway ownership
+
+This proxy is part of the only approved production entry path for `pf-svc-*`. Direct
+Cloud Run URLs are not consumer endpoints; they are reserved for this proxy, controlled
+rollback, and explicitly authorized diagnostics.
+
 ## Contract
 
 - Routes are `/reference/{path}` and `/income/{path}`.

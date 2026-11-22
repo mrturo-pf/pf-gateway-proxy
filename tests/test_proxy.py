@@ -1,5 +1,7 @@
 """Tests for the PF gateway proxy contract."""
 
+from typing import ClassVar
+
 import httpx
 import pytest
 
@@ -12,7 +14,7 @@ _VALID_ID = "550e8400-e29b-41d4-a716-446655440000"
 class _FakeClient:
     """Capture one backend request and return a synthetic response."""
 
-    calls: list[dict[str, object]] = []
+    calls: ClassVar[list[dict[str, object]]] = []
 
     def __init__(self, *args, **kwargs) -> None:
         """Accept the production client constructor arguments."""

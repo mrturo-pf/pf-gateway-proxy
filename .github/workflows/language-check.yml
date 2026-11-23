@@ -1,0 +1,31 @@
+name: CI / Documentation language
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - "**/*.mdx"
+      - ".github/workflows/language-check.yml"
+      - ".githooks/pre-commit"
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  language:
+    name: Documentation language
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          repository: mrturo-pf/pf-base
+          path: ecosystem-root
+      - run: |
+          python3 ecosystem-root/scripts/quality/check-language.py --all --mode markdown
+          python3 ecosystem-root/scripts/quality/check-language.py --all --mode comments
+          python3 ecosystem-root/scripts/quality/check-language.py --all --mode user-facing --report

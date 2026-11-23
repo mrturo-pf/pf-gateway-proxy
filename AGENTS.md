@@ -14,7 +14,8 @@ rollback, and explicitly authorized diagnostics.
 
 - Routes are `/reference/{path}` and `/income/{path}`.
 - Strip exactly one service prefix before forwarding.
-- Preserve query strings, request bodies, `X-API-Key`, and `X-Request-ID`.
+- Preserve query strings, request bodies, the legacy `X-API-Key` during migration, and
+  `X-Request-ID`; strip the gateway-owned `X-Gateway-API-Key` before backend forwarding.
 - Generate a UUIDv4 when `X-Request-ID` is absent; reject malformed values with `400`.
 - Forward a Google identity token to each Cloud Run backend.
 - Never log API keys, tokens, request bodies, or sensitive response payloads.

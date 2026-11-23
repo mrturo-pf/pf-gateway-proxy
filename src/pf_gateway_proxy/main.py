@@ -16,6 +16,7 @@ from google.oauth2 import id_token
 
 _REQUEST_ID = "X-Request-ID"
 _API_KEY = "X-API-Key"
+_GATEWAY_API_KEY = "X-Gateway-API-Key"
 _MAX_REQUEST_ID_LENGTH = 64
 _UUID4 = re.compile(
     r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
@@ -79,7 +80,10 @@ def _forward_headers(request: Request, request_id: str, token: str) -> dict[str,
     headers = {}
     for key, value in request.headers.items():
         normalized = key.lower()
-        if normalized in _FORWARD_HEADERS and normalized != _REQUEST_ID.lower():
+        if (
+            normalized in _FORWARD_HEADERS
+            and normalized not in {_REQUEST_ID.lower(), _GATEWAY_API_KEY.lower()}
+        ):
             headers[key] = value
     headers[_REQUEST_ID] = request_id
     headers["Authorization"] = f"Bearer {token}"

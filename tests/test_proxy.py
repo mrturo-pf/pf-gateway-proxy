@@ -56,15 +56,14 @@ async def _token(audience: str) -> str:
 
 @pytest.mark.asyncio
 async def test_proxy_strips_prefix_and_preserves_request_contract() -> None:
-    """The proxy forwards legacy headers but strips the gateway consumer key."""
+    """The proxy strips the gateway consumer API key before forwarding."""
     async with _REAL_ASYNC_CLIENT(
         transport=httpx.ASGITransport(app=main.app), base_url="http://proxy"
     ) as client:
         response = await client.get(
             "/reference/monetary-units?include=active",
             headers={
-                "X-API-Key": "application-key",
-                "X-Gateway-API-Key": "gateway-key",
+                "X-API-Key": "gateway-key",
                 "X-Request-ID": _VALID_ID,
             },
         )
@@ -74,8 +73,7 @@ async def test_proxy_strips_prefix_and_preserves_request_contract() -> None:
     assert call["method"] == "GET"
     assert call["url"] == "https://reference.test/monetary-units"
     assert call["params"] == [("include", "active")]
-    assert call["headers"]["x-api-key"] == "application-key"
-    assert "x-gateway-api-key" not in call["headers"]
+    assert "x-api-key" not in call["headers"]
     assert call["headers"]["X-Request-ID"] == _VALID_ID
     assert call["headers"]["Authorization"] == "Bearer token-for:https://reference.test"
     assert response.headers["X-Request-ID"] == _VALID_ID

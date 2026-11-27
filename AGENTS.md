@@ -27,7 +27,7 @@ rollback, and explicitly authorized diagnostics.
 uv sync --group dev
 uv run pytest
 uv run ruff check src tests
-uv run uvicorn pf_gateway_proxy.main:app --reload --port 8080
+uv run uvicorn pf_svc_gateway_proxy.main:app --reload --port 8080
 ```
 
 ## Deployment

@@ -1,4 +1,4 @@
-# AGENTS.md — pf-gateway-proxy
+# AGENTS.md — pf-svc-gateway-proxy
 
 Scale-to-zero FastAPI routing facade for the PF API Gateway. This service owns only
 routing and transport concerns; business logic remains in `pf-svc-reference` and

@@ -40,7 +40,7 @@ structlog.configure(
     ]
 )
 logger = structlog.get_logger(__name__)
-app = FastAPI(title="pf-gateway-proxy", version="0.1.0")
+app = FastAPI(title="pf-svc-gateway-proxy", version="0.1.0")
 
 
 def _backend_urls() -> dict[str, str]:
@@ -98,7 +98,7 @@ def _response_headers(response: httpx.Response) -> dict[str, str]:
 @app.get("/health")
 async def health() -> dict[str, str]:
     """Return proxy health without calling a backend."""
-    return {"status": "ok", "service": "pf-gateway-proxy"}
+    return {"status": "ok", "service": "pf-svc-gateway-proxy"}
 
 
 @app.api_route(

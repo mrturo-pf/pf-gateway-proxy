@@ -1,10 +1,10 @@
-# pf-gateway-proxy
+# pf-svc-gateway-proxy
 
 A small scale-to-zero routing facade behind Google Cloud API Gateway.
 
 ```text
 API Gateway /reference/* ─┐
-                          ├─> pf-gateway-proxy ─> pf-svc-reference
+                          ├─> pf-svc-gateway-proxy ─> pf-svc-reference
 API Gateway /income/* ────┘                    └─> pf-svc-income
 ```
 

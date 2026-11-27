@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir .
 RUN useradd --create-home --uid 10001 appuser
 USER appuser
 
-CMD ["uvicorn", "pf_gateway_proxy.main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "pf_svc_gateway_proxy.main:app", "--host", "0.0.0.0", "--port", "8080"]

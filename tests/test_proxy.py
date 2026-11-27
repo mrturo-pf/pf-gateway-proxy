@@ -5,7 +5,7 @@ from typing import ClassVar
 import httpx
 import pytest
 
-from pf_gateway_proxy import main
+from pf_svc_gateway_proxy import main
 
 _REAL_ASYNC_CLIENT = httpx.AsyncClient
 _VALID_ID = "550e8400-e29b-41d4-a716-446655440000"

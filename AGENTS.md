@@ -1,4 +1,4 @@
-# AGENTS.md — pf-gateway-proxy
+# AGENTS.md — pf-svc-gateway-proxy
 
 Scale-to-zero FastAPI routing facade for the PF API Gateway. This service owns only
 routing and transport concerns; business logic remains in `pf-svc-reference` and
@@ -27,7 +27,7 @@ rollback, and explicitly authorized diagnostics.
 uv sync --group dev
 uv run pytest
 uv run ruff check src tests
-uv run uvicorn pf_gateway_proxy.main:app --reload --port 8080
+uv run uvicorn pf_svc_gateway_proxy.main:app --reload --port 8080
 ```
 
 ## Deployment
